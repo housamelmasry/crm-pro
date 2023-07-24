@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('proposals', function (Blueprint $table) {
             $table->id();
+            $table->String('Financial_Notes',200);
+            $table->String('Payment_Terms',200);
+            $table->String('Offer_Validity',45);
+            $table->String('Delivery_Terms',45);
+            $table->String('Warranty',45);
+            $table->String('Signatures',3);
+            $table->String('Stamp',3);
+            $table->Integer('Order_ID');//Relationship
+            $table->Integer('Client_ID');//Relationship
+            $table->Integer('Company_ID');//Relationship
             $table->timestamps();
         });
     }

@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('meetings', function (Blueprint $table) {
             $table->id();
+            $table->date('Date');
+            $table->time('Time');
+            $table->String('Reference',45);
+            $table->String('Type',45);
+            $table->String('Notes',200);
+            $table->Integer('Company_ID');//Relationship
             $table->timestamps();
         });
     }
