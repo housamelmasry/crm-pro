@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_projects', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->Integer('User_ID');//Relationship
+            $table->Integer('Project_ID');//Relationship
+            $table->String('User_Role',45);
         });
     }
 
