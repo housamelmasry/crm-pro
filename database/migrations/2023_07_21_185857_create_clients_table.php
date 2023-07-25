@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->String('Name',45);
-            $table->String('End_User',45);
-            $table->String('Country',45);
-            $table->String('City',45);
-            $table->String('Phone',45);
-            $table->String('Email',45);
-            $table->String('Website',45);
-            $table->String('Contact_Person',45);
-            $table->String('Contact_Person_Phone',45);
-            $table->String('Status',10);
-            $table->Integer('Added_By');//Relationship
-            $table->Integer('Company_ID');//Relationship
+            $table->String('name',45);
+            $table->String('end_User',45);
+            $table->String('country',45);
+            $table->String('city',45);
+            $table->String('phone',45);
+            $table->String('email',45);
+            $table->String('website',45);
+            $table->String('contact_Person',45);
+            $table->String('contact_Person_Phone',45);
+            $table->String('status',10);
+            $table->foreignId('added_By')->references('id')->on('users');//Relationship
+            $table->foreignId('company_ID')->references('id')->on('companies');//Relationship
             $table->timestamps();
         });
     }

@@ -13,20 +13,18 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->String('Name',45);
-            $table->String('Category',45);
-            $table->Integer('Available_Qty');
-            $table->decimal('Price', 8, 2);
-            $table->decimal('Cost', 8, 2);
-            $table->String('Brand',45);
-            $table->Bit('Photo',100);
-            $table->String('Status',5);
-            $table->dateTime('Last_Order_Date');
-            $table->dateTime('Date_Added');
-            $table->Integer('Added_By');//Relationship
-            $table->Integer('Company_ID');//Relationship
-            
-
+            $table->String('name',45);
+            $table->String('category',45);
+            $table->Integer('available_qty');
+            $table->decimal('price', 8, 2);
+            $table->decimal('cost', 8, 2);
+            $table->String('brand',45);
+            // $table->Bit('photo',100);   // morphs
+            $table->String('status',5);
+            $table->dateTime('last_order_date');
+            $table->dateTime('date_added');
+            $table->foreignId('added_by')->references('id')->on('users');//Relationship
+            $table->foreignId('company_id')->references('id')->on('companies');//Relationship
             $table->timestamps();
         });
     }

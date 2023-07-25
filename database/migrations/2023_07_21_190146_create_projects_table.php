@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->String('Name',45);
-            $table->String('Description',300);
-            $table->dateTime('Start_Date');
-            $table->dateTime('End_Date');
-            $table->String('Priority',5);
-            $table->String('Progress',10);
-            $table->String('Status',5);
-            $table->String('Location',45);
-            $table->String('Type',45);
-            $table->Bit('Photo',100);
-            $table->String('Department',45);
-            $table->Integer('Added_By');//Relationship
-            $table->Integer('Client_ID');//Relationship
-            $table->Integer('Company_ID');//Relationship
+            $table->String('name',45);
+            $table->String('description',300);
+            $table->dateTime('start_Date');
+            $table->dateTime('end_Date');
+            $table->String('priority',5);
+            $table->String('progress',10);
+            $table->String('status',5);
+            $table->String('location',45);
+            $table->String('type',45);
+            // $table->Bit('photo',100);
+            $table->String('department',45);
+            $table->foreignId('added_By')->references('id')->on('users'); //Relationship
+            $table->foreignId('client_ID')->references('id')->on('clients'); //Relationship
+            $table->foreignId('company_ID')->references('id')->on('companies');//Relationship
             $table->timestamps();
         });
     }

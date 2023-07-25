@@ -14,6 +14,11 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->enum('payment_method',['card', 'cash']);
+            $table->decimal('value', 10,2);
+            $table->string('5');
+            $table->decimal('profit', 10,2);
+            $table->enum('status', ['active', 'inactive']);
+            $table->foreignId('company_id')->references('id')->on('companies');
             $table->timestamps();
         });
     }

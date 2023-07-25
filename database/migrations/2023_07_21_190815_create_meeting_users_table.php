@@ -12,8 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('meeting_users', function (Blueprint $table) {
-            $table->Integer('Meeting_ID');//Relationship
-            $table->Integer('User_ID');//Relationship
+
+            $table->foreignId('meeting_id')->constrained('meetings');//Relationship
+            $table->foreignId('user_id')->constrained('users');//Relationship
         });
     }
 

@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use PHPUnit\Framework\Constraint\Constraint;
 
 return new class extends Migration
 {
@@ -12,9 +13,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user_projects', function (Blueprint $table) {
-            $table->Integer('User_ID');//Relationship
-            $table->Integer('Project_ID');//Relationship
-            $table->String('User_Role',45);
+            $table->foreignId('user_id')->constrained('users');//Relationship
+            $table->foreignId('Project_ID')->constrained('projects');//Relationship
+            $table->String('user_role',45);
         });
     }
 

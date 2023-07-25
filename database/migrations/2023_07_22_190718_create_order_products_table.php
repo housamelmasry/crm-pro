@@ -14,8 +14,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order_products', function (Blueprint $table) {
-            $table->foreignId('order_id')->references('id')->on('orders');
-            $table->foreignId('product_id')->references('id')->on('products');
+            
+            $table->foreignId('order_id')->constrained('orders');//Relationship
+            $table->foreignId('product_id')->constrained('products');//Relationship
             $table->integer('quantity');
             $table->decimal('unit_price', 10, 2);
             $table->decimal('total_price',);
