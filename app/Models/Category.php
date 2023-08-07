@@ -5,25 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Project extends Model
+class Category extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'name',
+        'parent_id',
         'description',
-        'start_Date',
-        'end_Date',
-        'priority',
-        'progress',
+        'image',
         'status',
-        'location',
-        'type',
-        'department',
-        'added_By',
-        'client_ID',
-        'company_ID',
-
-
+        // 'slug'
 ];
+
 }

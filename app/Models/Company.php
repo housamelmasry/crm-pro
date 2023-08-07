@@ -2,8 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Client;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Company extends Model
 {
@@ -12,12 +15,12 @@ class Company extends Model
     protected $fillable = [
 
         'name',
-        'type_of_Business'
-
-
-
+        // 'type_of_Business'
     ];
 
 
-
+public function client() : HasMany
+{
+    return $this->hasMany(Client::class);
+}
 }

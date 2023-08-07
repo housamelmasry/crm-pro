@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Meeting extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        // 'date',
+        // 'time',
+        'reference',
+        'type',
+        'notes',
+        'company_ID',
+
+];
+
 }

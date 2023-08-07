@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
@@ -9,6 +11,7 @@ use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProposalController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,49 +24,73 @@ use App\Http\Controllers\ProposalController;
 |
 */
 
+
+Route::post('/register', [AuthController::class , 'register']);
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+
+
+
     return $request->user();
 });
-
 // company routes
+Route::get('/company/index', [CompanyController::class,'index']);
+Route::get('/company/{id}', [CompanyController::class,'show']);
 Route::post('/company/create', [CompanyController::class,'store']);
 Route::put('/company/update/{id}', [CompanyController::class,'edit']);
 Route::delete('/company/delete/{id}', [CompanyController::class,'destroy']);
-Route::get('/company/{id}', [CompanyController::class,'show']);
-Route::get('/company', [CompanyController::class,'index']);
+
+
+//category routes
+
+// Route::resource('/category', CategoryController::class);
+
+Route::get('/category/index', [CategoryController::class,'index']);
+Route::get('/category/{id}', [CategoryController::class,'show']);
+Route::post('/category/create', [CategoryController::class,'create']);
+Route::put('/category/update/{id}', [CategoryController::class,'update']);
+Route::delete('/category/delete/{id}', [CategoryController::class,'destroy']);
+
+
+//client routes
+Route::get('/client/index', [ClientController::class,'index']);
+Route::get('/client/{id}', [ClientController::class,'show']);
+Route::post('/client/create' ,[ClientController::class,'create']);
 
 //meeting routes
-Route::post('/meeting/create', [MeetingController::class,'store']);
+Route::get('/meeting/index', [MeetingController::class,'index']);
+Route::get('/meeting/{id}', [MeetingController::class,'show']);
+Route::post('/meeting/create', [MeetingController::class,'create']);
 Route::put('/meeting/update/{id}', [MeetingController::class,'update']);
 Route::delete('/meeting/delete/{id}', [MeetingController::class,'destroy']);
-Route::get('/meeting/{id}', [MeetingController::class,'index']);
 
 //order routes
+Route::get('/order/index', [OrderController::class,'index']);
+Route::get('/order/{id}', [OrderController::class,'show']);
 Route::post('/order/create', [OrderController::class,'store']);
 Route::put('/order/update/{id}', [OrderController::class,'update']);
 Route::delete('/order/delete/{id}', [OrderController::class,'destroy']);
-Route::get('/order/{id}', [OrderController::class,'index']);
 
 //product routes
-Route::post('/product/create', [ProductController::class,'store']);
+Route::get('/product/index', [ProductController::class,'index']);
+Route::get('/product/{id}', [ProductController::class,'show']);
+Route::post('/product/create', [ProductController::class,'create']);
 Route::put('/product/update/{id}', [ProductController::class,'update']);
 Route::delete('/product/delete/{id}', [ProductController::class,'destroy']);
-Route::get('/product/{id}', [ProductController::class,'index']);
 
 //project routes
-Route::post('/Project/create', [ProjectController::class,'store']);
-Route::put('/Project/update/{id}', [ProjectController::class,'update']);
-Route::delete('/Project/delete/{id}', [ProjectController::class,'destroy']);
-Route::get('/Project/{id}', [ProjectController::class,'index']);
+Route::get('/project/index', [ProjectController::class,'index']);
+Route::get('/project/{id}', [ProjectController::class,'show']);
+Route::post('/project/create', [ProjectController::class,'create']);
+Route::put('/project/update/{id}', [ProjectController::class,'update']);
+Route::delete('/project/delete/{id}', [ProjectController::class,'destroy']);
 
 //proposal routes
-Route::post('/proposal/create', [ProposalController::class,'store']);
+Route::get('/proposal/index', [ProposalController::class,'index']);
+Route::get('/proposal/{id}', [ProposalController::class,'show']);
+Route::post('/proposal/create', [ProposalController::class,'create']);
 Route::put('/proposal/update/{id}', [ProposalController::class,'update']);
 Route::delete('/proposal/delete/{id}', [ProposalController::class,'destroy']);
-Route::get('/proposal/{id}', [ProposalController::class,'index']);
 
-//client routes
-Route::post('/client/create', [ClientController::class,'store']);
-Route::put('/client/update/{id}', [ClientController::class,'update']);
-Route::delete('/client/delete/{id}', [ClientController::class,'destroy']);
-Route::get('/client/{id}', [ClientController::class,'index']);
+
