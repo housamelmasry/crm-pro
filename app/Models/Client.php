@@ -37,13 +37,18 @@ class Client extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function proposal(): HasMany
+    {
+        return $this->hasMany(Proposal::class);
+    }
+
 
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }
 
-    
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

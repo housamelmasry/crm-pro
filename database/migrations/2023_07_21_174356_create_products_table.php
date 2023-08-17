@@ -24,7 +24,7 @@ return new class extends Migration
             $table->dateTime('last_order_date');
             $table->dateTime('date_added');
             $table->foreignId('added_by')->references('id')->on('users');//Relationship
-            $table->foreignId('company_id')->references('id')->on('companies');//Relationship
+            $table->foreignId('category_id')->references('id')->on('categories');//Relationship
             $table->timestamps();
         });
     }

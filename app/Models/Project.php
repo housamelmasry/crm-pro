@@ -35,10 +35,6 @@ class Project extends Model
         return $this->belongsToMany(Client::class);
     }
 
-    public function company(): BelongsTo
-    {
-        return $this->belongsTo(Company::class);
-    }
 
 
     public function user(): BelongsTo
@@ -47,15 +43,24 @@ class Project extends Model
     }
 
 
-    public function category(): HasMany
-    {
-        return $this->hasMany(Category::class);
-    }
 
 
-    public function product(): HasMany
-    {
-        return $this->hasMany(Product::class);
-    }
+    
+    // public function company(): BelongsTo
+    // {
+    //     return $this->belongsTo(Company::class);
+    // }
+
+
+    // public function category(): HasMany
+    // {
+    //     return $this->hasMany(Category::class);
+    // }
+
+
+    // public function product(): HasMany
+    // {
+    //     return $this->hasMany(Product::class);
+    // }
 
 }

@@ -7,6 +7,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -47,6 +48,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    
+
+    public function company() : BelongsTo
+    {
+        return $this->belongsTo(Company::class);
+    }
 
     public function client() : HasMany
     {
@@ -60,10 +67,6 @@ class User extends Authenticatable
     }
 
 
-    public function company() : HasMany
-    {
-        return $this->hasMany(Company::class);
-    }
 
 
     public function proposal() : HasMany

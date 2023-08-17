@@ -20,9 +20,11 @@ return new class extends Migration
             $table->String('warranty',45);
             $table->String('signatures',3);
             $table->String('stamp',3);
-            $table->foreignId('order_ID')->references('id')->on('orders'); //Relationship
-            $table->foreignId('client_ID')->references('id')->on('clients'); //Relationship
-            $table->foreignId('company_ID')->references('id')->on('companies');//Relationship
+            // $table->foreignId('order_ID')->references('id')->on('orders'); //Relationship
+            $table->foreignId('client_id')->references('id')->on('clients'); //Relationship
+            $table->foreignId('company_id')->references('id')->on('companies');//Relationship
+            $table->foreignId('category')->references('id')->on('categories');//Relationship
+            $table->foreignId('product')->references('id')->on('products');//Relationship
             $table->timestamps();
         });
     }

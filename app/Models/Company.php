@@ -20,24 +20,35 @@ class Company extends Model
     ];
 
 
-    public function client() : HasMany
+    public function client(): HasMany
     {
         return $this->hasMany(Client::class);
     }
 
-    public function project() : HasMany
+    public function project(): HasMany
     {
         return $this->hasMany(Project::class);
     }
 
-    public function meeting() : HasMany
+    public function meeting(): HasMany
     {
         return $this->hasMany(Meeting::class);
     }
 
-    public function proposal() : HasMany
+    public function proposal(): HasMany
     {
         return $this->hasMany(Proposal::class);
     }
-
+    public function order(): HasMany
+    {
+        return $this->hasMany(Order::class);
     }
+    public function category(): HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+    public function user(): HasMany
+    {
+        return $this->hasMany(User::class);
+    }
+}

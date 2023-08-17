@@ -19,6 +19,8 @@ return new class extends Migration
             $table->decimal('profit', 10,2);
             $table->enum('status', ['active', 'inactive']);
             $table->foreignId('company_id')->references('id')->on('companies');
+            $table->foreignId('client_id')->references('id')->on('clients');
+            $table->foreignId('proposal')->references('id')->on('proposals');
             $table->timestamps();
         });
     }
