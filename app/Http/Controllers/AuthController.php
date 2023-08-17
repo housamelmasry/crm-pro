@@ -13,9 +13,11 @@ class AuthController extends Controller
     public function register (Request $request)
     {
         $fields = $request->validate([
-            'first_name' => 'required|string',
-            'email' => 'required|string|unique:users,email',
-            'password' => 'required|string|confirmed'
+            'first_name' => ['required','string','min:3','max:50'],
+            'last_name' => ['nullable','string','min:3','max:50'],
+            'phone' => ['nullable','unique','integer','min:8','max:15',],
+            'email' => ['required','string','unique:users','email'],
+            'password' => ['required','string','confirmed']
         ]);
         $user = User::create([
             'first_name' => $fields['first_name'],
@@ -35,7 +37,8 @@ class AuthController extends Controller
 
 
 
-    public function login(Request $request) {
+    public function login(Request $request)
+    {
         $fields = $request->validate([
             'email' => 'required|string',
             'password' => 'required|string'
@@ -63,7 +66,8 @@ class AuthController extends Controller
 
 
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         auth()->user()->Passport::tokensExpireIn(Carbon::now()->addMinutes(5));;
 
         return [

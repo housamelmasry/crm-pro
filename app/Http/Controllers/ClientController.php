@@ -27,18 +27,18 @@ class ClientController extends Controller
     public function create(Request $request)
     {
 
-        $fields = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'string', 'email'],
-            'country' => ['required', 'string', 'min:3', 'max:50'],
-            'city' => ['required', 'string', 'min:3', 'max:50'],
-            'phone' => ['nullable', 'integer', 'min:6', 'max20:'],
-            'website' => ['nullable', 'url',],
-            'contact_Person' => ['nullable'],
-            'contact_Person_Phone' => ['nullable'],
-            'company_ID' => ['nullable','int'],
+        // $fields = $request->validate([
+        //     'name' => ['required', 'string'],
+        //     'email' => ['required', 'string', 'email'],
+        //     'country' => ['required', 'string', 'min:3', 'max:50'],
+        //     'city' => ['required', 'string', 'min:3', 'max:50'],
+        //     'phone' => ['nullable', 'integer', 'min:6', 'max20:'],
+        //     'website' => ['nullable', 'url',],
+        //     'contact_Person' => ['nullable'],
+        //     'contact_Person_Phone' => ['nullable'],
+        //     'company_ID' => ['nullable','int'],
 
-        ]);
+        // ]);
 
         // $fields = Client::create([
             //     'name' => $fields['name'],
@@ -47,8 +47,8 @@ class ClientController extends Controller
             //     'city' => $fields['city'],
             // ]);
 
-            $fields = Client::create($request->all());
-        return response(201);
+            Client::create($request->all());
+            return response('Client created sucsessfuly', 201);
 
     }
 

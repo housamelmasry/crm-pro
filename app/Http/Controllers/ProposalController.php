@@ -28,6 +28,7 @@ class ProposalController extends Controller
     public function create(Request $request)
     {
         Proposal::create($request->all());
+        return response('Proposal created sucsessfuly', 201);
 
     }
 
@@ -39,7 +40,7 @@ class ProposalController extends Controller
 
 
 
-    
+
 
 
     public function destroy($id)

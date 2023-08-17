@@ -27,7 +27,26 @@ class MeetingController extends Controller
 
     public function create(Request $request)
     {
+
+        // $fields = $request->validate([
+        //     'reference' => ['nullable','string'],
+        //     'type' => ['nullable','string'],
+        //     'notes' => ['nullable','text','max:3554'],
+        //     'company_ID' => ['nullable','integer']
+        // ]);
+
+        $validator = validator($request->all(),[
+
+            'reference' => ['nullable','string'],
+            'type' => ['nullable','string'],
+            'notes' => ['nullable','text','max:3554'],
+            'company_ID' => ['nullable','integer'],
+        ]);
+
+
+
         Meeting::create($request->all());
+        return response('Meeting created sucsessfuly', 201);
 
     }
 

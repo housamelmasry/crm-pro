@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Product;
+use GuzzleHttp\Psr7\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -24,26 +25,34 @@ class ProductController extends Controller
     public function create(Request $request)
     {
         // $fields = $request->validate([
-        //     'name' => 'required|string|min:3',
-        //     'price' => 'required',
-        //     'password' => 'required|string|confirmed'
-        // ]);
 
-        // Product::create([
-        //     'name' => $request('name'),
-        //     'category_id' => $request('category_id'),
-        //     'available_qty' => $request('available_qty'),
-        //     'price' => $request('price'),
-        //     'cost' => $request('cost'),
-        //     'brand' => $request('brand'),
-        //     'status' => $request('status'),
-        //     'added_by' => $request('added_by'),
-        //     'company_id' => $request('company_id'),
+        //     'name' => ['string','required','min:3','max:255',],
+        //     'available_qty' => ['nullable','integer',],
+        //     'price' => ['required','decimal:10,2',],
+        //     'brand' => ['nullable','string',],
+
 
 
         // ]);
+
+
+
+        $validator = validator($request->all(),[
+
+            'name' => ['string','required','min:3','max:255',],
+            'available_qty' => ['nullable','integer',],
+            'price' => ['required','decimal:10,2',],
+            'brand' => ['nullable','string',],
+
+        ]);
+        // if ($validator-> fails()){
+        //     return response('error creating', 400);
+        // }
+            // return response(201);
 
         Product::create($request->all());
+
+        return response('Product created sucsessfuly', 201);
 
     }
 

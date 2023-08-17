@@ -29,7 +29,19 @@ class OrderController extends Controller
 
     public function create(Request $request)
     {
+        $validatedData = $request->validate([
+            'value' => ['required','decimal:10,2',],
+            'profit' => ['nullable','decimal:10,2'],
+            'company_id' => ['nullable','integer']
+
+        ]);
         Order::create($request->all());
+        return response('Order created sucsessfuly', 201);
+
+
+
+
+
 
     }
 

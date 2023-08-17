@@ -47,10 +47,50 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+
     public function client() : HasMany
     {
         return $this->hasMany(Client::class);
     }
+
+
+    public function project() : HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
+
+    public function company() : HasMany
+    {
+        return $this->hasMany(Company::class);
+    }
+
+
+    public function proposal() : HasMany
+    {
+        return $this->hasMany(Proposal::class);
+    }
+
+
+    public function order() : HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+
+    public function category() : HasMany
+    {
+        return $this->hasMany(Category::class);
+    }
+
+
+    public function product() : HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
+
+
 
 
 

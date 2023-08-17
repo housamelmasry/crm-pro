@@ -27,13 +27,13 @@ use App\Models\Category;
 
 Route::post('/register', [AuthController::class , 'register']);
 
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 
     return $request->user();
 });
+
 // company routes
 Route::get('/company/index', [CompanyController::class,'index']);
 Route::get('/company/{id}', [CompanyController::class,'show']);
@@ -43,9 +43,7 @@ Route::delete('/company/delete/{id}', [CompanyController::class,'destroy']);
 
 
 //category routes
-
 // Route::resource('/category', CategoryController::class);
-
 Route::get('/category/index', [CategoryController::class,'index']);
 Route::get('/category/{id}', [CategoryController::class,'show']);
 Route::post('/category/create', [CategoryController::class,'create']);
@@ -57,6 +55,8 @@ Route::delete('/category/delete/{id}', [CategoryController::class,'destroy']);
 Route::get('/client/index', [ClientController::class,'index']);
 Route::get('/client/{id}', [ClientController::class,'show']);
 Route::post('/client/create' ,[ClientController::class,'create']);
+Route::put('/client/update/{id}', [ClientController::class,'update']);
+Route::delete('/client/delete/{id}', [ClientController::class,'destroy']);
 
 //meeting routes
 Route::get('/meeting/index', [MeetingController::class,'index']);

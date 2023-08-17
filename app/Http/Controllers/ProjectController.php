@@ -28,6 +28,7 @@ class ProjectController extends Controller
     public function create(Request $request)
     {
         Project::create($request->all());
+        return response('Project created sucsessfuly', 201);
 
     }
 

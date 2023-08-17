@@ -12,15 +12,32 @@ class Company extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
+    protected $fillable =
+    [
 
         'name',
         // 'type_of_Business'
     ];
 
 
-public function client() : HasMany
-{
-    return $this->hasMany(Client::class);
-}
-}
+    public function client() : HasMany
+    {
+        return $this->hasMany(Client::class);
+    }
+
+    public function project() : HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
+    public function meeting() : HasMany
+    {
+        return $this->hasMany(Meeting::class);
+    }
+
+    public function proposal() : HasMany
+    {
+        return $this->hasMany(Proposal::class);
+    }
+
+    }

@@ -91,7 +91,7 @@ class CategoryController extends Controller
             // 'status' => $fields['status'],
         ]);
         // return view('/', compact('parents', 'category'));
-        return response(201);
+        return response('Category created sucsessfuly', 201);
     }
 
 
