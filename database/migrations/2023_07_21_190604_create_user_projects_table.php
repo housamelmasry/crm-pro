@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('user_projects', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users');//Relationship
-            $table->foreignId('Project_ID')->constrained('projects');//Relationship
+            $table->foreignId('Project_id')->constrained('projects');//Relationship
             $table->String('user_role',45);
         });
     }

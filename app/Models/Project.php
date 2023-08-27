@@ -42,10 +42,15 @@ class Project extends Model
         return $this->belongsTo(User::class);
     }
 
-
-
-
     
+    public function proposal():BelongsTo
+    {
+        return $this->belongsTo(Proposal::class);
+    }
+
+
+
+
     // public function company(): BelongsTo
     // {
     //     return $this->belongsTo(Company::class);

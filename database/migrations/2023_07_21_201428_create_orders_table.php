@@ -15,10 +15,9 @@ return new class extends Migration
             $table->id();
             $table->enum('payment_method',['card', 'cash']);
             $table->decimal('value', 10,2);
-            // $table->string('5');
             $table->decimal('profit', 10,2);
-            $table->enum('status', ['active', 'inactive']);
-            $table->foreignId('company_id')->references('id')->on('companies');
+            $table->enum('status', ['done', 'inactive','in progress']);
+            $table->foreignId('added_by')->references('id')->on('users');
             $table->foreignId('client_id')->references('id')->on('clients');
             $table->foreignId('proposal')->references('id')->on('proposals');
             $table->timestamps();

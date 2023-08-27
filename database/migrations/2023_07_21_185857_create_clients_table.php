@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->String('name',45);
-            $table->String('end_User',45)->nullable();
+            // $table->String('end_User',45)->nullable();
             $table->String('country',45);
             $table->String('city',45);
             $table->String('phone',45)->nullable();
@@ -22,9 +22,10 @@ return new class extends Migration
             $table->String('website',45)->nullable();
             $table->String('contact_Person',45)->nullable();
             $table->String('contact_Person_Phone',45)->nullable();
-            $table->String('status',10)->nullable();
-            // $table->foreignId('added_By')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();//Relationship
-            $table->foreignId('company_ID')->references('id')->on('companies')->cascadeOnUpdate()->cascadeOnDelete();//Relationship
+            // $table->String('status',10)->nullable();
+            $table->foreignId('added_by')->references('id')->on('users')->cascadeOnUpdate()->cascadeOnDelete();//Relationship
+            // $table->foreignId('parent_id')->nullable()->constrained('clients','id') ->nullOnDelete();
+            // $table->foreignId('company_id')->references('id')->on('companies')->cascadeOnUpdate()->cascadeOnDelete();//Relationship
             $table->timestamps();
         });
     }

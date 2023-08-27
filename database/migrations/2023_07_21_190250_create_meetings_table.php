@@ -18,7 +18,8 @@ return new class extends Migration
             $table->String('reference',45);
             $table->String('type',45);
             $table->String('notes',200);
-            $table->foreignId('company_ID')->references('id')->on('companies');//Relationship
+            $table->foreignId('user_id')->constrained('users','id');//Relationship
+            $table->foreignId('clients_id')->constrained('clients','id');//Relationship
             $table->timestamps();
         });
     }

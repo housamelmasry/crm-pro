@@ -3,11 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Laravel\Sanctum\HasApiTokens;
+// use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -48,12 +48,12 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    
 
-    public function company() : BelongsTo
-    {
-        return $this->belongsTo(Company::class);
-    }
+
+    // public function company() : BelongsTo
+    // {
+    //     return $this->belongsTo(Company::class);
+    // }
 
     public function client() : HasMany
     {
@@ -66,8 +66,10 @@ class User extends Authenticatable
         return $this->hasMany(Project::class);
     }
 
-
-
+    public function meeting() : HasMany
+    {
+        return $this->hasMany(Meeting::class);
+    }
 
     public function proposal() : HasMany
     {
@@ -79,21 +81,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Order::class);
     }
-
-
-    public function category() : HasMany
-    {
-        return $this->hasMany(Category::class);
-    }
-
-
-    public function product() : HasMany
-    {
-        return $this->hasMany(Product::class);
-    }
-
-
-
 
 
 

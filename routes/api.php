@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
@@ -11,7 +11,6 @@ use App\Http\Controllers\MeetingController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProposalController;
-use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +25,7 @@ use App\Models\Category;
 
 
 Route::post('/register', [AuthController::class , 'register']);
+Route::post('/login', [AuthController::class , 'login']);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
@@ -46,7 +46,7 @@ Route::delete('/company/delete/{id}', [CompanyController::class,'destroy']);
 // Route::resource('/category', CategoryController::class);
 Route::get('/category/index', [CategoryController::class,'index']);
 Route::get('/category/{id}', [CategoryController::class,'show']);
-Route::post('/category/create', [CategoryController::class,'create']);
+Route::post('/category/store', [CategoryController::class,'store']);
 Route::put('/category/update/{id}', [CategoryController::class,'update']);
 Route::delete('/category/delete/{id}', [CategoryController::class,'destroy']);
 
@@ -54,7 +54,7 @@ Route::delete('/category/delete/{id}', [CategoryController::class,'destroy']);
 //client routes
 Route::get('/client/index', [ClientController::class,'index']);
 Route::get('/client/{id}', [ClientController::class,'show']);
-Route::post('/client/create' ,[ClientController::class,'create']);
+Route::post('/client/store' ,[ClientController::class,'store']);
 Route::put('/client/update/{id}', [ClientController::class,'update']);
 Route::delete('/client/delete/{id}', [ClientController::class,'destroy']);
 

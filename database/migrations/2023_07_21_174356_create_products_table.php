@@ -20,11 +20,10 @@ return new class extends Migration
             $table->decimal('cost', 8, 2);
             $table->String('brand',45);
             // $table->Bit('photo',100);   // morphs
-            $table->String('status',5);
+            // $table->String('status',5);
             $table->dateTime('last_order_date');
             $table->dateTime('date_added');
             $table->foreignId('added_by')->references('id')->on('users');//Relationship
-            $table->foreignId('category_id')->references('id')->on('categories');//Relationship
             $table->timestamps();
         });
     }

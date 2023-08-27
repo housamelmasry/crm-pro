@@ -21,7 +21,7 @@ class Client extends Model
         'website',
         'contact_Person',
         'contact_Person_Phone',
-        'company_ID',
+        'added_by',
     ];
 
 
@@ -41,13 +41,6 @@ class Client extends Model
     {
         return $this->hasMany(Proposal::class);
     }
-
-
-    public function company(): BelongsTo
-    {
-        return $this->belongsTo(Company::class);
-    }
-
 
     public function user(): BelongsTo
     {

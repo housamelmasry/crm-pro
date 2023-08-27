@@ -39,14 +39,17 @@ class Company extends Model
     {
         return $this->hasMany(Proposal::class);
     }
+
     public function order(): HasMany
     {
         return $this->hasMany(Order::class);
     }
+
     public function category(): HasMany
     {
         return $this->hasMany(Category::class);
     }
+    
     public function user(): HasMany
     {
         return $this->hasMany(User::class);

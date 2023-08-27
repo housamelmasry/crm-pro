@@ -18,11 +18,11 @@ return new class extends Migration
             $table->String('offer_validity',45);
             $table->String('delivery_terms',45);
             $table->String('warranty',45);
-            $table->String('signatures',3);
-            $table->String('stamp',3);
-            // $table->foreignId('order_ID')->references('id')->on('orders'); //Relationship
+            // $table->String('signatures',3);
+            // $table->String('stamp',3);
+            // $table->foreignId('order_id')->references('id')->on('orders'); //Relationship
+            // $table->foreignId('company_id')->references('id')->on('companies');//Relationship
             $table->foreignId('client_id')->references('id')->on('clients'); //Relationship
-            $table->foreignId('company_id')->references('id')->on('companies');//Relationship
             $table->foreignId('category')->references('id')->on('categories');//Relationship
             $table->foreignId('product')->references('id')->on('products');//Relationship
             $table->timestamps();

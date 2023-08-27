@@ -10,13 +10,20 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
+
+    // public function __construct() {
+    //     $this->middleware('auth');
+    // }
+
+
     //  Display a listing of the resource.
     public function index()
     {
-        // // searsh
+        // // search
         // $request= request();
         // $query=Category::query();
         // if($name = $request->query('name')){
@@ -44,55 +51,55 @@ class CategoryController extends Controller
 
 
     //   Show the form for creating a new resource.
-    public function create(Request $request, Category $category)
-    {
-        $fields = $request->validate([
-        'name' =>
-        [
-            'required',
-            'string',
-            'min:3','max:255',
-           // 'unique:category,name,$id',
-            // Rule::unique('categories','name')->ignore($id),
+    // public function create(Request $request, Category $category)
+    // {
+    //     $fields = $request->validate([
+    //     'name' =>
+    //     [
+    //         'required',
+    //         'string',
+    //         'min:3','max:255',
+    //        // 'unique:category,name,$id',
+    //         // Rule::unique('categories','name')->ignore($id),
 
 
-            // custom validation
-            // new Filter(),
+    //         // custom validation
+    //         // new Filter(),
 
-            // function($attribute, $value,$fails){
-            //     if(strtolower($value == 'category')){
-            //         $fails('this name is not allowed');
-            //     }
-            // },
+    //         // function($attribute, $value,$fails){
+    //         //     if(strtolower($value == 'category')){
+    //         //         $fails('this name is not allowed');
+    //         //     }
+    //         // },
 
-        ],
-       'parent_id' =>
-       [
-            'nullable','int', //'exists:categories,id',
-       ],
-
-    //    'image'=>
+    //     ],
+    //    'parent_id' =>
     //    [
-    //         'image','max:1048576','dimensions:min_width=100,min_height=100',
+    //         'nullable','int', //'exists:categories,id',
     //    ],
 
-       'status' =>'in:active,archived'
+    // //    'image'=>
+    // //    [
+    // //         'image','max:1048576','dimensions:min_width=100,min_height=100',
+    // //    ],
 
-    ]);
+    //    'status' =>'in:active,archived'
+
+    // ]);
 
 
 
-        // $parents = Category::all();
-        // $category = new Category(); // category in '_form.blade.php' page
+    //     // $parents = Category::all();
+    //     // $category = new Category(); // category in '_form.blade.php' page
 
-        Category::create([
-            'name' => $fields['name'],
-            'parent_id' => $fields['parent_id'],
-            // 'status' => $fields['status'],
-        ]);
-        // return view('/', compact('parents', 'category'));
-        return response('Category created sucsessfuly', 201);
-    }
+    //     Category::create([
+    //         'name' => $fields['name'],
+    //         'parent_id' => $fields['parent_id'],
+    //         // 'status' => $fields['status'],
+    //     ]);
+    //     // return view('/', compact('parents', 'category'));
+    //     return response('Category created sucsessfuly', 201);
+    // }
 
 
 
@@ -102,39 +109,78 @@ class CategoryController extends Controller
 
 
     // Store a newly created resource in storage.
-    public function store(Request $request)
+    public function store(Request $request )
     {
-        $request->validate(Category::rules(),[
-            'required' => 'this field (:attribute) is required',
-            'unique' => 'this field (:attribute)in already exists',
+        $input = $request->all();
+        $validator = Validator::make($input,[
+        'name' =>
+        [
+                'required',
+                'string',
+                'min:3','max:255',
+                // 'unique:category,name,$id',
+                // Rule::unique('categories','name')->ignore($id),
+        ],
+       'parent_id' =>
+        [
+                    'nullable','int','exists:categories,id',
+        ],
+
+        // 'status' =>'in:active,archived'
+
         ]);
 
-        $request->merge([
-            'slug' => Str::slug($request->post('name'))
-        ]);
 
-        $data = $request->except('image');
-
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');  // UploadedFile object
-            $path = $file->store('uploads', [
-                'disk' => 'public'
+        if($validator->fails())
+        {
+            return response ()->json([
+                'fail'=> false,
+                'message'=> 'Sorry not stored',
+                'error'=> $validator->errors(),
             ]);
-            $data['image'] = $path;
         }
 
-        $category = Category::create($data);
-        return Redirect::route('categories.index')->with('success', 'Category created successfully!');
+        $category = Category::create($input);
 
-        // $request ->post('name');
-        // $request->name;
+        return response ()->json([
+            'success'=> true,
+            'message'=> 'Category was successfully stored',
+            'category'=> $category,
 
-        //  $request->all();
-        //  $request->only([,]);
-        //  $request->except([,]);
+        ]);
 
-        // $category = new Category($request->all());
-        // $category->save();
+
+    //     $request->validate(Category::rules(),[
+    //         'required' => 'this field (:attribute) is required',
+    //         'unique' => 'this field (:attribute)in already exists',
+    //     ]);
+
+    //     $request->merge([
+    //         'slug' => Str::slug($request->post('name'))
+    //     ]);
+
+    //     $data = $request->except('image');
+
+    //     if ($request->hasFile('image')) {
+    //         $file = $request->file('image');  // UploadedFile object
+    //         $path = $file->store('uploads', [
+    //             'disk' => 'public'
+    //         ]);
+    //         $data['image'] = $path;
+    //     }
+
+    //     $category = Category::create($data);
+    //     return Redirect::route('categories.index')->with('success', 'Category created successfully!');
+
+    //     // $request ->post('name');
+    //     // $request->name;
+
+    //     //  $request->all();
+    //     //  $request->only([,]);
+    //     //  $request->except([,]);
+
+    //     // $category = new Category($request->all());
+    //     // $category->save();
 
     }
 

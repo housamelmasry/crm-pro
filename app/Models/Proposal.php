@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Proposal extends Model
 {
@@ -25,10 +26,6 @@ class Proposal extends Model
         'order_ID',
     ];
 
-    public function company(): BelongsTo
-    {
-        return $this->belongsTo(Company::class);
-    }
 
 
     public function client(): BelongsTo
@@ -42,6 +39,15 @@ class Proposal extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function order(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function project(): HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
 
     //has many categories and products
 

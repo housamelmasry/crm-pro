@@ -185,4 +185,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    Laravel\Passport\PassportServiceProvider::class ,
+    
 ];
